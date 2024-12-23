@@ -81,24 +81,25 @@ void longestWordTask() {
         std::cin >> choice;
 
         switch (choice) {
-        case 1: {
+        case 1: { // Обработка файла
             std::string filename;
             std::cout << "Enter the file name: ";
-            std::cin >> filename;
+            std::cin.ignore(); // Убираем остатки ввода
+            std::getline(std::cin, filename);
 
             try {
-                finder.processFile(filename);
+                finder.processFile(filename); // Обработка файла
                 std::cout << "File processed successfully.\n";
             }
             catch (const std::exception& e) {
-                std::cerr << e.what() << "\n";
+                std::cerr << "Error: " << e.what() << "\n";
             }
             break;
         }
-        case 2:
+        case 2: // Отображение результата
             finder.displayResult();
             break;
-        case 3:
+        case 3: // Возврат в главное меню
             running = false;
             break;
         default:
